@@ -33,8 +33,9 @@ public class InputToDatabase extends HttpServlet {
 
             System.out.println(MatchDetails[0]);
             String driver = "com.mysql.jdbc.Driver";
+            //loading driver for mysql
             Class.forName(driver);
-            //loading drivers for mysql
+
 
 
             //creating connection with the database
@@ -42,11 +43,8 @@ public class InputToDatabase extends HttpServlet {
                     ("jdbc:mysql://localhost:3306/details", "root", "stevo123");
 
             PreparedStatement ps=con.prepareStatement
-                    ("insert into matchdetails values(?,?)");
-            int a=2;
-            ps.setInt(1,a);
-            a++;
-            ps.setString(2,MatchDetails[0]);
+                    ("insert into matchdetails values(?)");
+            ps.setString(1,MatchDetails[0]);
             int i=ps.executeUpdate();
 
         } catch (Exception e) {
